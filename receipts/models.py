@@ -10,7 +10,10 @@ class Receipt(models.Model):
 	recepient_image = models.ImageField()
 
 	def __unicode__(self):
-		return self.description
+		return "%s | %s | %s" % (
+				self.date,
+				self.bought_from,
+				self.description)
 
 class Merchant(models.Model):
 	name = models.CharField(max_length=255)
