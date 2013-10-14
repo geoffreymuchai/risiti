@@ -7,7 +7,7 @@ class Receipt(models.Model):
 	category = models.ForeignKey('Category')
 	account_to_credit = models.ForeignKey('Account')
 	price = models.DecimalField(max_digits=9, decimal_places=2)
-	recepient_image = models.ImageField()
+	recepient_image = models.ImageField(upload_to='receipts/%Y/%m/%d')
 
 	def __unicode__(self):
 		return "%s | %s | %s" % (
@@ -33,7 +33,7 @@ class Category(models.Model):
 class Account(models.Model):
 	name = models.CharField(max_length=255)
 	description = models.TextField()
-	account_type = models.CharFields(max_length=255)
+	account_type = models.CharField(max_length=255)
 	amount = models.DecimalField(max_digits=9, decimal_places=2)
 
 	def __unicode__(self):
