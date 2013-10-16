@@ -1,2 +1,2 @@
 # dependencies of risiti
-jinga2
+django-registration
