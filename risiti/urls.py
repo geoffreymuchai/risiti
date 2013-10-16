@@ -9,6 +9,6 @@ urlpatterns = patterns('',
     # url(r'^$', 'risiti.views.home', name='home'),
     # url(r'^risiti/', include('risiti.foo.urls')),
 	url(r'^$', 'risiti.views.templates.index', name="index"),
-	url(r'^receipts/', include('receipts.urls', namespace='receipts')),
+	url(r'^receipt/', include('receipts.urls', namespace='receipt')),
     url(r'^admin/', include(admin.site.urls)),
 )
