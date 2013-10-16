@@ -1,6 +1,7 @@
 from django.db import models
 
 class Receipt(models.Model):
+	date_created = models.DateTimeField(auto_now_add=true)
 	date = models.DateField()
 	bought_from = models.ForeignKey('Merchant')
 	description = models.TextField()
