@@ -1,2 +1,3 @@
 # dependencies of risiti
+jinja2
 django-registration
