@@ -1,14 +1,14 @@
 from django.db import models
 
 class Receipt(models.Model):
-	date_created = models.DateTimeField(auto_now_add=true)
+	date_created = models.DateTimeField(auto_now_add=True)
 	date = models.DateField()
 	bought_from = models.ForeignKey('Merchant')
 	description = models.TextField()
 	category = models.ForeignKey('Category')
 	account_to_credit = models.ForeignKey('Account')
 	price = models.DecimalField(max_digits=9, decimal_places=2)
-	recepient_image = models.ImageField(upload_to='receipts/%Y/%m/%d')
+	image = models.ImageField(upload_to='receipts/%Y/%m/%d')
 
 	def __unicode__(self):
 		return "%s | %s | %s" % (
