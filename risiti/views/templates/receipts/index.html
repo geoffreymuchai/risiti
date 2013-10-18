@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="row">
+		<h2>Payments</h2>
+		{% for receipt in receipt_list %}
+			<div class="small-12">
+				<div class="small-8">
+					{{ receipt.image }}
+				</div>
+				<div class="small-4">
+					<ul>
+						<li>{{ receipt.date }}</li>
+						<li>{{ receipt.description }}</li>
+						<li>{{ receipt.bought_from }}</li>
+						<li>{{ receipt.price }}</li>
+					</ul>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
