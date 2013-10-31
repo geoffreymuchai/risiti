@@ -25,19 +25,19 @@
 			<ul class="title-area">
 				<li class="name">
 					<a href="#">
-						<img src="img/risiti.png"/>
+						<img src="{% static 'img/risiti.png' %}"/>
 					</a>
 				</li>
 				<li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
 			</ul>
 			<section class="top-bar-section">
 				<ul class="right navlinks">
-					<li><a href="">Getting Started</a></li>
 					<li><a href="">Help</a></li>
-					<li><a href="">About</a></li>
 				</ul>
 			</section>
 		</nav>
+		{% block content %}
+		{% endblock %}
 		<script src="{% static 'js/vendor/jquery-1.10.2.min.js' %}"></script>
 		<script src="{% static 'js/plugins.js' %}"></script>
 		<script src="{% static 'js/main.js' %}"></script>
