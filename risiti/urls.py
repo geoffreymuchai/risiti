@@ -8,7 +8,8 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'risiti.views.home', name='home'),
     # url(r'^risiti/', include('risiti.foo.urls')),
-	url(r'^$', 'risiti.views.templates.index', name="index"),
+	url(r'^$', "receipts.views.index", name = 'index'),
 	url(r'^receipt/', include('receipts.urls', namespace='receipt')),
+	url(r'^account/', include('receipts.urls', namespace='account')),
     url(r'^admin/', include(admin.site.urls)),
 )

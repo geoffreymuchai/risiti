@@ -6,6 +6,10 @@ TEMPLATE_DEBUG = DEBUG
 user = os.environ['RISITI_USER']
 password = os.environ['RISITI_PASSWORD']
 
+PROJECT_PATH = os.getcwd()
+TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
+STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
+
 #admins = (
 #    ('', ''),
 #)
@@ -53,12 +57,12 @@ USE_TZ = True
 
 # absolute filesystem path to the directory that will hold user-uploaded files.
 # example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 # url that handles the media served from media_root. make sure to use a
 # trailing slash.
 # examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # absolute path to the directory static files should be collected to.
 # don't put anything in this directory yourself; store your static files
@@ -72,17 +76,15 @@ STATIC_URL = '/static/'
 
 # additional locations of static files
 STATICFILES_DIRS = (
-    # put strings here, like "/home/html/static" or "c:/www/django/static".
-    # always use forward slashes, even on windows.
-    # don't forget to use absolute paths, not relative paths.
+    STATIC_PATH,
 )
 
 # list of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.filesystemfinder',
-    'django.contrib.staticfiles.finders.appdirectoriesfinder',
-#    'django.contrib.staticfiles.finders.defaultstoragefinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # make this unique, and don't share it with anybody.
@@ -90,17 +92,17 @@ SECRET_KEY = 'v1luw=i@mx(74le-hpx6u8bzsc@weqr)h-^ql-f5$hf8maqz6k'
 
 # list of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.loader',
-    'django.template.loaders.app_directories.loader',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.loader',
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.commonmiddleware',
-    'django.contrib.sessions.middleware.sessionmiddleware',
-    'django.middleware.csrf.csrfviewmiddleware',
-    'django.contrib.auth.middleware.authenticationmiddleware',
-    'django.contrib.messages.middleware.messagemiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     # uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.xframeoptionsmiddleware',
 )
@@ -111,9 +113,7 @@ ROOT_URLCONF = 'risiti.urls'
 WSGI_APPLICATION = 'risiti.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # put strings here, like "/home/html/django_templates" or "c:/www/django/templates".
-    # always use forward slashes, even on windows.
-    # don't forget to use absolute paths, not relative paths.
+    TEMPLATE_PATH,
 )
 
 INSTALLED_APPS = (

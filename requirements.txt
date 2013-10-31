@@ -1,3 +1,5 @@
 # dependencies of risiti
 jinja2
 django-registration
+psycopg2
+pil

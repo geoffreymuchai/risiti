@@ -1,0 +1,17 @@
+{% extends "risiti/base.html" %}
+
+{% block content %}
+	<div class="row">
+		<h2>Accounts</h2>
+		{% for account in account_list %}
+			<div class="small-12">
+				<ul>
+					<li>{{ account.name }}</li>
+					<li>{{ account.description }}</li>
+					<li>{{ account.account_type }}</li>
+					<li>{{ account.amount }}</li>
+				</ul>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
