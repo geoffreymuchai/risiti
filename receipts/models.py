@@ -32,7 +32,7 @@ class Category(models.Model):
 		return self.name
 
 class Account(models.Model):
-	name = models.CharField(max_length=255)
+	name = models.CharField(max_length=255, unique=True)
 	description = models.TextField()
 	account_type = models.CharField(max_length=255)
 	amount = models.DecimalField(max_digits=9, decimal_places=2)

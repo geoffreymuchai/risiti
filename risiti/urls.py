@@ -12,5 +12,6 @@ urlpatterns = patterns('',
 	url(r'^$', "receipts.views.index", name = 'index'),
 	url(r'^receipt/$', include('receipts.urls', namespace='receipt')),
 	url(r'^account/$', views.AccountListView.as_view(), name="account"),
+	url(r'^account/create/$', views.AccountCreateView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -1,9 +1,10 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.views.generic import CreateView
 
 from receipts.models import Receipt, Account, Category, Merchant
-
+from receipts.forms import AccountForm
 
 def index(request):
 	return render(request, 'risiti/index.html')
@@ -23,3 +24,9 @@ class AccountListView(generic.ListView):
 	model = Account
 	context_object_name = "account_list"
 	template_name = "risiti/account_list.html"
+
+class AccountCreateView(CreateView):
+	form_class = AccountForm
+	model = Account
+	template_name = "risiti/account_form.html"
+	success_url = '/account/'
