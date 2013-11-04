@@ -4,7 +4,7 @@ from django.views import generic
 from django.views.generic import CreateView
 
 from receipts.models import Receipt, Account, Category, Merchant
-from receipts.forms import AccountForm
+from receipts.forms import AccountForm, CategoryForm, MerchantForm, ReceiptForm
 
 def index(request):
 	return render(request, 'risiti/index.html')
@@ -28,5 +28,23 @@ class AccountListView(generic.ListView):
 class AccountCreateView(CreateView):
 	form_class = AccountForm
 	model = Account
-	template_name = "risiti/account_form.html"
+	template_name = "risiti/base_form.html"
 	success_url = '/account/'
+
+class CategoryCreateView(CreateView):
+	form_class = CategoryForm
+	model = Category
+	template_name = "risiti/base_form.html"
+	success_url = '/category/'
+
+class MerchantCreateView(CreateView):
+	form_class = MerchantForm
+	model = Merchant
+	template_name = "risiti/base_form.html"
+	success_url = '/merchant/'
+
+class ReceiptCreateView(CreateView):
+	form_class = ReceiptForm
+	model = Receipt
+	template_name = "risiti/base_form.html"
+	success_url = '/receipt/'
