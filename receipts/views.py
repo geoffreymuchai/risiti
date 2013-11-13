@@ -23,7 +23,7 @@ class ReceiptDetailView(generic.DetailView):
 class AccountListView(generic.ListView):
 	model = Account
 	context_object_name = "account_list"
-	template_name = "risiti/account_list.html"
+	template_name = "risiti/base_list.html"
 
 class AccountCreateView(CreateView):
 	form_class = AccountForm
@@ -37,11 +37,21 @@ class CategoryCreateView(CreateView):
 	template_name = "risiti/base_form.html"
 	success_url = '/category/'
 
+class CategoryListView(generic.ListView):
+	model = Category
+	context_object_name = "category_list"
+	template_name = "risiti/base_list.html"
+
 class MerchantCreateView(CreateView):
 	form_class = MerchantForm
 	model = Merchant
 	template_name = "risiti/base_form.html"
 	success_url = '/merchant/'
+
+class MerchantListView(generic.ListView):
+	model = Merchant
+	context_object_name = "merchant_list"
+	template_name = "risiti/base_list.html"
 
 class ReceiptCreateView(CreateView):
 	form_class = ReceiptForm

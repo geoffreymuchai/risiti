@@ -1,0 +1,36 @@
+{% extends "risiti/base.html" %}
+
+{% block content %}
+	<div class="row">
+		{% if account_list %}
+			<h2>Accounts</h2>
+			{% for account in account_list %}
+				<ul class="card small-2">
+					<li><strong>Name:</strong> {{ account.name }}</li>
+					<li><strong>Description:</strong> {{ account.description }}</li>
+					<li><strong>Account Type:</strong> {{ account.account_type }}</li>
+					<li><strong>Amount:</strong> {{ account.amount }}</li>
+				</ul>
+			{% endfor %}
+		{% endif %}
+		{% if category_list %}
+			<h2>Categories</h2>
+			{% for category in category_list %}
+				<ul class="card small-2">
+					<li><strong>Name:</strong> {{ category.name }}</li>
+					<li><strong>Value:</strong> {{ category.value }}</li>
+				</ul>
+			{% endfor %}
+		{% endif %}
+		{% if merchant_list %}
+			<h2>Merchant</h2>
+			{% for merchant in merchant_list %}
+				<ul class="card small-2">
+					<li><strong>Name:</strong> {{ merchant.name }}</li>
+					<li><strong>Description:</strong> {{ merchant.description }}</li>
+					<li><strong>Total amount:</strong> {{ merchant.total_amount_debited }}</li>
+				</ul>
+			{% endfor %}
+		{% endif %}
+	</div>
+{% endblock %}
