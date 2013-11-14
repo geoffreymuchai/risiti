@@ -1,29 +1,39 @@
 {% extends "risiti/base.html" %}
+{% load static from staticfiles %}
 
 {% block content %}
-	<div class="row">
-		<h2>Payments</h2>
-		{% for receipt in receipt_list %}
-			<div class="card small-4">
-				<div class="small-4 columns">
-					{% if receipt.image %}
-						<img class="small-4" src="{{ receipt.image }}" />
-					{% else %}
-						<img class="small-4" src="{% static 'img/risiti.png' %}">
+	<div class="large-12 columns">
+		<div class="">
+			<h2>Payments</h2>
+			{% for receipt in receipt_list %}
+				<div class="card small-4">
+					<div class="row">
+						<div class="small-6 columns">
+							{% if receipt.image %}
+								<img class="small-4" src="{{ receipt.image.url }}" />
+							{% else %}
+								<img src="{% static 'img/dummy-receipt.png' %}">
+							{% endif %}
+						</div>
+						<div class="small-6 columns">
+							<dl>
+								<dt>Date</dt>
+								<dd>{{ receipt.date|date:"jS-M-Y" }}</dd>
+								<dt>Description</dt>
+								<dd>{{ receipt.description }}</dd>
+								<dt>Bought from</dt>
+								<dd>{{ receipt.bought_from }}</dd>
+								<dt>Amount</dt>
+								<dd>Ksh. {{ receipt.price }}</dd>
+							</dl>
+						</div>
+					</div>
 				</div>
-				<div class="small-4 columns">
-					<ul>
-						<li>{{ receipt.date }}</li>
-						<li>{{ receipt.description }}</li>
-						<li>{{ receipt.bought_from }}</li>
-						<li>{{ receipt.price }}</li>
-					</ul>
+			{% empty %}
+				<div class="small-4 small-centered">
+					<p>No receipts have been saved yet</p>
 				</div>
-			</div>
-		{% empty %}
-			<div class="small-4 small-centered">
-				<p>No receipts have been saved yet</p>
-			</div>
-		{% endfor %}
+			{% endfor %}
+		</div>
 	</div>
 {% endblock %}

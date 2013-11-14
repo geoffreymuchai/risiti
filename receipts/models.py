@@ -13,7 +13,7 @@ class Receipt(models.Model):
 	date_created = models.DateTimeField(auto_now_add=True)
 	date = models.DateField()
 	bought_from = models.ForeignKey('Merchant', default=get_default_merchant)
-	description = models.TextField()
+	description = models.TextField(blank=True)
 	category = models.ForeignKey('Category', default=get_default_category)
 	account_to_credit = models.ForeignKey('Account', default=get_default_account)
 	price = models.DecimalField(max_digits=9, decimal_places=2)

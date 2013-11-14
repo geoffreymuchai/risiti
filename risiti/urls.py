@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
 
+from django.conf import settings
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from receipts import views
@@ -17,6 +19,7 @@ urlpatterns = patterns('',
 	url(r'^merchant/$', views.MerchantListView.as_view()),
 	url(r'^merchant/create/$', views.MerchantCreateView.as_view()),
 	url(r'^receipt/create/$', views.ReceiptCreateView.as_view()),
+	url(r'^receipt/$', views.ReceiptListView.as_view()),
 	url(r'^receipt/$', include('receipts.urls', namespace='receipt')),
     url(r'^admin/', include(admin.site.urls)),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

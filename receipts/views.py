@@ -9,6 +9,12 @@ from receipts.forms import AccountForm, CategoryForm, MerchantForm, ReceiptForm
 def index(request):
 	return render(request, 'risiti/index.html')
 
+class ReceiptCreateView(CreateView):
+	form_class = ReceiptForm
+	model = Receipt
+	template_name = "risiti/base_form.html"
+	success_url = '/receipt/'
+
 
 class ReceiptListView(generic.ListView):
 	queryset = Receipt.objects.order_by('-date_created')
@@ -52,9 +58,3 @@ class MerchantListView(generic.ListView):
 	model = Merchant
 	context_object_name = "merchant_list"
 	template_name = "risiti/base_list.html"
-
-class ReceiptCreateView(CreateView):
-	form_class = ReceiptForm
-	model = Receipt
-	template_name = "risiti/base_form.html"
-	success_url = '/receipt/'

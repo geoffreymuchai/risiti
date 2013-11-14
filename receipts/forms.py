@@ -19,4 +19,7 @@ class MerchantForm(forms.ModelForm):
 class ReceiptForm(forms.ModelForm):
 	class Meta:
 		model = Receipt
+		widgets = {
+				"date":forms.TextInput(attrs={'id':'datepicker'})
+			}
 		fields = ['date', 'description', 'bought_from', 'category', 'account_to_credit', 'price', 'image']

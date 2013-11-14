@@ -52,3 +52,11 @@ button, .button {
 	-webkit-box-shadow: 0px 2px 1px #888;
 	box-shadow: 0px 2px 1px #888;
 }
+
+.card ul {
+	list-style-type: none;
+}
+
+.card img {
+	margin: 0px auto;
+}
