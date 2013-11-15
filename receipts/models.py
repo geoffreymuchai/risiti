@@ -1,5 +1,7 @@
 from django.db import models
+from django.db.models.signals import post_save
 
+from utils import tesseract
 
 def get_default_merchant():
 	Merchant.objects.get_or_create(name="Miscellaneous")[0]
@@ -8,8 +10,8 @@ def get_default_category():
 def get_default_account():
 	Account.objects.get_or_create(name="Miscellaneous")[0]
 
-class Receipt(models.Model):
 
+class Receipt(models.Model):
 	date_created = models.DateTimeField(auto_now_add=True)
 	date = models.DateField()
 	bought_from = models.ForeignKey('Merchant', default=get_default_merchant)
@@ -24,6 +26,24 @@ class Receipt(models.Model):
 				self.date,
 				self.bought_from,
 				self.description)
+
+class ReceiptText(models.Model):
+	date_created = models.DateTimeField(auto_now_add=True)
+	image = models.ForeignKey('Receipt')
+	text = models.TextField(blank=True)
+
+def scan_receipts_for_text(sender, instance, created, **kwargs):
+	if created:
+		image_path = instance.image.url
+		print "Scanning image path:%s for text" % (image_path)
+		if image_path is not '':
+			image_text = tesseract.image_file_to_string(image_path, graceful_errors=True)
+			receipt_text = ReceiptText(image=instance, text=image_text)
+			receipt_text.save()
+		else:
+			print "No image to scan :("
+
+post_save.connect(scan_receipts_for_text, sender=Receipt, dispatch_uid="get_image_text")
 
 class Merchant(models.Model):
 	name = models.CharField(max_length=255)
@@ -48,5 +68,3 @@ class Account(models.Model):
 
 	def __unicode__(self):
 		return self.name
-
-

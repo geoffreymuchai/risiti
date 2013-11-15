@@ -20,6 +20,6 @@ urlpatterns = patterns('',
 	url(r'^merchant/create/$', views.MerchantCreateView.as_view()),
 	url(r'^receipt/create/$', views.ReceiptCreateView.as_view()),
 	url(r'^receipt/$', views.ReceiptListView.as_view()),
-	url(r'^receipt/$', include('receipts.urls', namespace='receipt')),
+	url(r'^receipt/text/$', views.ReceiptTextListView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

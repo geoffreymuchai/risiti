@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.views.generic import CreateView
 
-from receipts.models import Receipt, Account, Category, Merchant
+from receipts.models import Receipt, ReceiptText, Account, Category, Merchant
 from receipts.forms import AccountForm, CategoryForm, MerchantForm, ReceiptForm
 
 def index(request):
@@ -20,6 +20,11 @@ class ReceiptListView(generic.ListView):
 	queryset = Receipt.objects.order_by('-date_created')
 	context_object_name = "receipt_list"
 	template_name = "risiti/receipt_list.html"
+
+class ReceiptTextListView(generic.ListView):
+	queryset = ReceiptText.objects.order_by('-date_created')
+	context_object_name = "receipt_text_list"
+	template_name = "risiti/base_list.html"
 
 class ReceiptDetailView(generic.DetailView):
 	model = Receipt
