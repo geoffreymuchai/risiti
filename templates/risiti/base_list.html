@@ -32,5 +32,14 @@
 				</ul>
 			{% endfor %}
 		{% endif %}
+		{% if receipt_text_list %}
+			<h2>Receipt Intepretation</h2>
+			{% for receipt_text in receipt_text_list %}
+				<ul class="card small-6">
+					<li><img src="{{ receipt_text.receipt.image.url }}" /></li>
+					<li>{{ receipt_text.text }}</li>
+				</ul>
+			{% endfor %}
+		{% endif %}
 	</div>
 {% endblock %}

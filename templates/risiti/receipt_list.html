@@ -6,16 +6,16 @@
 		<div class="">
 			<h2>Payments</h2>
 			{% for receipt in receipt_list %}
-				<div class="card small-4">
+				<div class="card large-3">
 					<div class="row">
-						<div class="small-6 columns">
+						<div class="">
 							{% if receipt.image %}
-								<img class="small-4" src="{{ receipt.image.url }}" />
+								<img class="" src="{{ receipt.image.url }}" />
 							{% else %}
 								<img src="{% static 'img/dummy-receipt.png' %}">
 							{% endif %}
 						</div>
-						<div class="small-6 columns">
+						<div class="">
 							<dl>
 								<dt>Date</dt>
 								<dd>{{ receipt.date|date:"jS-M-Y" }}</dd>

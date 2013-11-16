@@ -13,7 +13,7 @@ class ReceiptCreateView(CreateView):
 	form_class = ReceiptForm
 	model = Receipt
 	template_name = "risiti/base_form.html"
-	success_url = '/receipt/'
+	success_url = '/receipt/text/'
 
 
 class ReceiptListView(generic.ListView):

@@ -11,6 +11,9 @@ scratch_image_name = "temp.bmp" # This file must be .bmp or other Tesseract-comp
 scratch_text_name_root = "temp" # Leave out the .txt extension
 cleanup_scratch_flag = True  # Temporary files cleaned up after OCR operation
 
+#TODO
+#Add ability to automatically install tesseract in ubuntu
+
 def call_tesseract(input_filename, output_filename):
 	"""Calls external tesseract.exe on input file (restrictions on types),
 	outputting output_filename+'txt'"""
@@ -53,5 +56,5 @@ def image_file_to_string(filename, cleanup = cleanup_scratch_flag, graceful_erro
 	return text
 
 # if __name__=='__main__':
-# 	text = image_file_to_string('fnord.tif', graceful_errors=True)
+# 	text = image_file_to_string('/home/geoffrey/sandbox/risiti/media/receipts/2013/11/16/infemi-mission.png', graceful_errors=True)
 # 	print "fnord.tif contents:", text
