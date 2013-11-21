@@ -36,8 +36,22 @@
 				</ul>
 			</section>
 		</nav>
-		{% block content %}
-		{% endblock %}
+
+		<div class="content">
+			<div class="large-2 columns">
+				<ul class="side-nav">
+					<li><a href="{% url 'payment_list' %}">Payments</a></li>
+					<li><a href="{% url 'account_list' %}">Accounts</a></li>
+					<li><a href="{% url 'merchant_list' %}">Merchants</a></li>
+					<li><a href="{% url 'payment_create' %}">Add receipt</a></li>
+				</ul>
+			</div>
+			<div class="large-10 columns">
+				{% block content %}
+				{% endblock %}
+			</div>
+		</div>
+		
 		<script src="{% static 'js/vendor/jquery-1.10.2.min.js' %}"></script>
 		<script src="{% static 'js/plugins.js' %}"></script>
 		<link rel="stylesheet"  href="{% static 'css/jquery-ui-1.10.3.min.css' %}">

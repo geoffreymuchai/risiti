@@ -13,7 +13,7 @@ def get_default_account():
 	Account.objects.get_or_create(name="Miscellaneous")[0]
 
 
-class Receipt(models.Model):
+class Payment(models.Model):
 	date_created = models.DateTimeField(auto_now_add=True)
 	date = models.DateField()
 	bought_from = models.ForeignKey('Merchant', default=get_default_merchant)
@@ -21,7 +21,7 @@ class Receipt(models.Model):
 	category = models.ForeignKey('Category', default=get_default_category)
 	account_to_credit = models.ForeignKey('Account', default=get_default_account)
 	price = models.DecimalField(max_digits=9, decimal_places=2)
-	image = models.ImageField(upload_to='receipts/%Y/%m/%d')
+	image = models.ImageField(upload_to='receipts/%Y/%m/%d', blank=True)
 
 	def __unicode__(self):
 		return "%s | %s | %s" % (
@@ -29,26 +29,26 @@ class Receipt(models.Model):
 				self.bought_from,
 				self.description)
 
-class ReceiptText(models.Model):
+class Receipt(models.Model):
 	date_created = models.DateTimeField(auto_now_add=True)
-	receipt = models.ForeignKey('Receipt')
-	text = models.TextField(blank=True)
+	receipt = models.ForeignKey('Payment')
+	description = models.TextField(blank=True)
 
 def scan_receipts_for_text(sender, instance, created, **kwargs):
-	if created:
+	if created and instance.image:
 		image_path = settings.PROJECT_PATH + instance.image.url
 		print "Scanning image path:%s for text" % (image_path)
 		if image_path is not '':
 			try:
 				image_text = tesseract.image_file_to_string(image_path, graceful_errors=True)
-				receipt_text = ReceiptText(receipt=instance, text=image_text)
+				receipt_text = Receipt(receipt=instance, text=image_text)
 				receipt_text.save()
 			except Exception, e:
 				print "An error occurred while processing the image"	
 		else:
 			print "No image to scan :("
 
-post_save.connect(scan_receipts_for_text, sender=Receipt, dispatch_uid="get_image_text")
+post_save.connect(scan_receipts_for_text, sender=Payment, dispatch_uid="get_image_text")
 
 class Merchant(models.Model):
 	name = models.CharField(max_length=255)

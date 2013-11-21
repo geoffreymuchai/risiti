@@ -3,31 +3,31 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.views.generic import CreateView
 
-from receipts.models import Receipt, ReceiptText, Account, Category, Merchant
-from receipts.forms import AccountForm, CategoryForm, MerchantForm, ReceiptForm
+from receipts.models import Payment, Receipt, Account, Category, Merchant
+from receipts.forms import AccountForm, CategoryForm, MerchantForm, PaymentForm
 
 def index(request):
 	return render(request, 'risiti/index.html')
 
-class ReceiptCreateView(CreateView):
-	form_class = ReceiptForm
-	model = Receipt
+class PaymentCreateView(CreateView):
+	form_class = PaymentForm
+	model = Payment
 	template_name = "risiti/base_form.html"
-	success_url = '/receipt/text/'
+	success_url = '/receipt/'
 
+
+class PaymentListView(generic.ListView):
+	queryset = Payment.objects.order_by('-date_created')
+	context_object_name = "payment_list"
+	template_name = "risiti/receipt_list.html"
 
 class ReceiptListView(generic.ListView):
 	queryset = Receipt.objects.order_by('-date_created')
-	context_object_name = "receipt_list"
-	template_name = "risiti/receipt_list.html"
-
-class ReceiptTextListView(generic.ListView):
-	queryset = ReceiptText.objects.order_by('-date_created')
 	context_object_name = "receipt_text_list"
 	template_name = "risiti/base_list.html"
 
-class ReceiptDetailView(generic.DetailView):
-	model = Receipt
+class PaymentDetailView(generic.DetailView):
+	model = Payment
 	template_name = "risiti/receipts_detail.html"
 
 

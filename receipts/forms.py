@@ -1,5 +1,5 @@
 from django import forms
-from receipts.models import Account, Category, Merchant, Receipt
+from receipts.models import Account, Category, Merchant, Payment
 
 class AccountForm(forms.ModelForm):
 	class Meta:
@@ -16,9 +16,9 @@ class MerchantForm(forms.ModelForm):
 		model = Merchant
 		fields = ['name', 'description', 'total_amount_debited']
 
-class ReceiptForm(forms.ModelForm):
+class PaymentForm(forms.ModelForm):
 	class Meta:
-		model = Receipt
+		model = Payment
 		widgets = {
 				"date":forms.TextInput(attrs={'id':'datepicker'})
 			}

@@ -23,7 +23,7 @@
 			{% endfor %}
 		{% endif %}
 		{% if merchant_list %}
-			<h2>Merchant</h2>
+			<h2>Merchants</h2>
 			{% for merchant in merchant_list %}
 				<ul class="card small-2">
 					<li><strong>Name:</strong> {{ merchant.name }}</li>
@@ -36,8 +36,22 @@
 			<h2>Receipt Intepretation</h2>
 			{% for receipt_text in receipt_text_list %}
 				<ul class="card small-6">
-					<li><img src="{{ receipt_text.receipt.image.url }}" /></li>
+					{% if receipt.image %}
+						<img src="{{ receipt_text.receipt.image.url }}" />
+					{% endif %}
 					<li>{{ receipt_text.text }}</li>
+					<li class="">
+						<dl>
+							<dt>Date</dt>
+							<dd>{{ receipt_text.receipt.date|date:"jS-M-Y" }}</dd>
+							<dt>Description</dt>
+							<dd>{{ receipt_text.receipt.description }}</dd>
+							<dt>Bought from</dt>
+							<dd>{{ receipt_text.receipt.bought_from }}</dd>
+							<dt>Amount</dt>
+							<dd>Ksh. {{ receipt_text.receipt.price }}</dd>
+						</dl>
+					</li>
 				</ul>
 			{% endfor %}
 		{% endif %}
