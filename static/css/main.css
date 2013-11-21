@@ -72,6 +72,14 @@ button, .button {
 	margin: 0px auto;
 }
 
+.card table td p {
+	word-break:break-all;
+}
+
+.card table tr.description {
+	vertical-align: top;
+}
+
 .side-nav li {
 	border-top: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
