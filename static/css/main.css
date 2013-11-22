@@ -43,7 +43,7 @@ button, .button {
 }
 
 .card {
-	display: inline-block;
+	display: inline-table;
 	margin: 0 1em 1.25em 0;
 	border: 1px solid #ddd;
 	padding: 0.625em 0.75em;
@@ -52,6 +52,11 @@ button, .button {
 	-webkit-box-shadow: 0px 2px 1px #888;
 	box-shadow: 0px 2px 1px #888;
 	font-size: 12px;
+}
+
+.card.create.label {
+	color: #211a46;
+	text-align: center;
 }
 
 .card ul {
@@ -68,16 +73,8 @@ button, .button {
 	font-weight: bold;
 }
 
-.card table {
-	margin: 0px auto;
-}
-
-.card table td p {
-	word-break:break-all;
-}
-
-.card table tr.description {
-	vertical-align: top;
+.card #image-container {
+	margin-bottom: 1em;
 }
 
 .side-nav li {

@@ -5,34 +5,36 @@
 	<div class="row">
 		<h2>Payments</h2>
 			<div class="large-12 columns">
-			{% for payment in payment_list %}
-				<div class="card small-3">
+				<a class="small-2 card create big secondary label" href="{% url 'payment_create' %}">
 					<div>
+						<img src="{% static 'img/dummy-receipt.png' %}">
+					</div>
+					Add a new payment
+				</a>
+			{% for payment in payment_list %}
+				<div class="small-3 card">
+					<div id="image-container">
 						{% if payment.image %}
-							<img src="{{ payment.receipt.image.url }}" />
+							<img src="{{ payment.image.url }}" />
 						{% else %}
 							<img src="{% static 'img/dummy-receipt.png' %}">
 						{% endif %}
 					</div>
 					<div>
-						<table>
-							<tr>
-								<td><strong>Date:</strong></td>
-								<td>{{ payment.date|date:"jS-M-Y" }}</td>
-							</tr>
-							<tr>
-								<td><strong>Account:</strong></td>
-								<td>{{ payment.bought_from }}</td>
-							</tr>
-							<tr>
-								<td><strong>Amount:</strong></td>
-								<td>Ksh. {{ payment.price }}</td>
-							</tr>
-							<tr class="description">
-								<td><strong>Description:</strong></td>
-								<td><p>{{ payment.description }}</p></td>
-							</tr>
-						</table>
+						<ul class="pricing-table">
+								<li class="price">
+									Ksh. {{ payment.price }}
+								</li>
+								<li class="bullet-item">
+									Bought on {{ payment.date|date:"jS/M/Y" }}
+								</li>
+								<li class="bullet-item">
+									{{ payment.description }}
+								</li>
+								<li class="bullet-item">
+									{{ payment.bought_from }}
+								</li>
+						</ul>
 					</div>
 				</div>
 			{% empty %}
